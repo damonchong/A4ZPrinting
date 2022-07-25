@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{54DC524D-A061-4168-98D6-6232DE48200C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>A4ZPrinting</RootNamespace>
+    <AssemblyName>A4ZPrinting</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SharpZebra, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\sharpzebra-master\Com.SharpZebra\bin\Debug\net20\SharpZebra.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\PrintCommand.cs" />
+    <Compile Include="Fonts\AbstractFont.cs" />
+    <Compile Include="Fonts\AbstractScalableFont.cs" />
+    <Compile Include="Fonts\FontPointSize.cs" />
+    <Compile Include="Fonts\IFont.cs" />
+    <Compile Include="Fonts\ZplFont0.cs" />
+    <Compile Include="Fonts\ZplFontA.cs" />
+    <Compile Include="Fonts\ZplFontB.cs" />
+    <Compile Include="Fonts\ZplFontC.cs" />
+    <Compile Include="Fonts\ZplFontD.cs" />
+    <Compile Include="Fonts\ZplFontF.cs" />
+    <Compile Include="Fonts\ZplFontG.cs" />
+    <Compile Include="Labels\ILabel.cs" />
+    <Compile Include="Labels\OneByPointSevenFiveInchNotPerforated.cs" />
+    <Compile Include="PrinterModels\AbstractPrinterModel.cs" />
+    <Compile Include="PrinterModels\GX430t.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\GlobalConstants.cs" />
+    <Compile Include="Settings\SupportedConfig.cs" />
+    <Compile Include="Templates\AbstractFieldTemplate.cs" />
+    <Compile Include="Templates\AbstractHolderTemplate.cs" />
+    <Compile Include="Templates\AbstractTemplate.cs" />
+    <Compile Include="Templates\AbstractTextFieldTemplate.cs" />
+    <Compile Include="Templates\Code128Field.cs" />
+    <Compile Include="Templates\LeftJustifiedHolder.cs" />
+    <Compile Include="Templates\DataMatrixField.cs" />
+    <Compile Include="Templates\StandardHolder.cs" />
+    <Compile Include="Templates\TextField.cs" />
+    <Compile Include="Templates\ITemplate.cs" />
+    <Compile Include="Utils\MeasureString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\SideComparer.cs" />
+    <Compile Include="Utils\Utilities.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
