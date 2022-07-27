@@ -54,9 +54,9 @@ namespace A4ZPrinting
       var label = new OneByPointSevenFiveInchNotPerforated(template);
       printerModel.Label = label;
       // Set as a USB printer.
-      var usbPrinter = new SharpZebra.Printing.USBPrinter(printerModel);
+      var printer = new SharpZebra.Printing.USBPrinter(printerModel);
       // Assign to a print command to generate the actual printing instructions.
-      var command = new PrintCommand(usbPrinter);
+      var command = new PrintCommand(printer);
       byte[] asciiBytes = command.GeneratePrintCommands();
       Console.WriteLine(Encoding.UTF8.GetString(asciiBytes));
       // Uncomment the line below to send for actual printing
