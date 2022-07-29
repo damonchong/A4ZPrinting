@@ -11,7 +11,6 @@ namespace A4ZPrinting.Labels
   {
     float WidthInMillimeters { get; set; }
     float HeightInMillimeters { get; set; }
-    float CornerRadiusInMillimeters { get; set;  }
     bool Perforated { get; set; }
     ITemplate Template { get; set; }
   }
