@@ -15,17 +15,12 @@ namespace A4ZPrinting.PrinterModels
   {
     private static GX430t _instance;
     private static readonly object _lock = new object();    
-    // Default dpi for this printer is 12 dots/mm i.e. 304.8 dots for 1 inch or 25.4 mm.
-    private static readonly float DOTS_PER_INCH = DPI_300;
-    private static readonly int DOT_PER_MILLIMETER = 12;
-    public int SlewSpeed { get; set; }
-    public int BackFeedSpeed { get; set; }
-    public char MediaType { get; set; }
 
     private GX430t()
     {
-      _dpmm = DOT_PER_MILLIMETER;
-      _dpi = DOTS_PER_INCH;
+      // Default dpi for this printer is 12 dots/mm i.e. 304.8 dots for 1 inch or 25.4 mm.
+      _dpmm = 12;
+      _dpi = DPI_300;
       _maxDarkness = 30f;
     }
 
@@ -50,8 +45,8 @@ namespace A4ZPrinting.PrinterModels
       PrinterName = "ZDesigner GX430t";
       PrinterType = 'G';
       PrinterPort = 1;
-      AlignLeft = 0; // Convert.ToInt32(Math.Round(currentLabel.CornerRadiusInMillimeters * DOT_PER_MILLIMETER, MidpointRounding.AwayFromZero));
-      AlignTop = 0; // Convert.ToInt32(Math.Round(currentLabel.CornerRadiusInMillimeters * DOT_PER_MILLIMETER, MidpointRounding.AwayFromZero));
+      AlignLeft = 0;
+      AlignTop = 0;
       Darkness = 25; // Max 30
       PrintSpeed = 2; // Supported speeds are 2, 3, 4 inches per second according to specs for GX430t.
       // Default print speed settings

@@ -16,6 +16,9 @@ namespace A4ZPrinting.PrinterModels
     protected float _dpi;
     protected float _maxDarkness;
 
+    public int SlewSpeed { get; set; }
+    public int BackFeedSpeed { get; set; }
+    public char MediaType { get; set; }
     public ILabel Label
     {
       get => _label;

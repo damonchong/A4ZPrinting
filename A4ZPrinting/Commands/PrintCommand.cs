@@ -16,12 +16,13 @@ namespace A4ZPrinting
 {
   public class PrintCommand : ZPLCommands
   {
+    private List<Type> supportedPrinters = new List<Type>() { GX430t.GetInstance().GetType(), ZD420t.GetInstance().GetType() };
     private IZebraPrinter printer;
     private AbstractPrinterModel printerModel;
     public PrintCommand(IZebraPrinter p)
     {
       this.printer = p;
-      if( printer.Settings is GX430t)
+      if (supportedPrinters.Contains(printer.Settings.GetType()))
       {
         // This is supported.
         printerModel = printer.Settings as AbstractPrinterModel;
@@ -45,10 +46,21 @@ namespace A4ZPrinting
     public static byte[] TextWrite(int left, int top, ElementDrawRotation rotation, AbstractFont font, int heightInDots, string text = "", int codepage = 850)
     {
       int widthInDots = font.WidthFromHeightByDots(heightInDots);
-      return string.IsNullOrEmpty(text)
-          ? new byte[0]
-          : Encoding.GetEncoding(codepage)
-              .GetBytes($"^FO{left},{top}^A{font.Letter}{(char)rotation},{heightInDots},{widthInDots}{FixTilde(text)}");
+      if (font.FormatType == FontFormat.BIT_MAPPED)
+      {
+        return string.IsNullOrEmpty(text)
+            ? new byte[0]
+            : Encoding.GetEncoding(codepage)
+                .GetBytes($"^FO{left},{top}^A{font.Letter}{(char)rotation},{heightInDots},{widthInDots}{FixTilde(text)}");
+      }
+      else
+      {
+        // No need to specify width for scalable font as it's automatic and the resulting display is better.
+        return string.IsNullOrEmpty(text)
+            ? new byte[0]
+            : Encoding.GetEncoding(codepage)
+                .GetBytes($"^FO{left},{top}^A{font.Letter}{(char)rotation},{heightInDots}{FixTilde(text)}");
+      }
     }
 
     public static new byte[] DataMatrixWrite(int left, int top, ElementDrawRotation rotation, int height, string text, QualityLevel qualityLevel = QualityLevel.ECC_200, AspectRatio aspectRatio = AspectRatio.SQUARE)
@@ -72,10 +84,20 @@ namespace A4ZPrinting
     {
       int widthInDots = font.WidthFromHeightByDots(heightInDots);
       var alignmentValue = (char)alignment;
-      return string.IsNullOrEmpty(text)
+      if (font.FormatType == FontFormat.BIT_MAPPED)
+      {
+        return string.IsNullOrEmpty(text)
           ? new byte[0]
           : Encoding.GetEncoding(codepage)
               .GetBytes($"^FO{left},{top}^A{font.Letter}{(char)rotation},{heightInDots},{widthInDots}^FB{width},{maxLines},{lineSpacing},{alignmentValue},{indentSize}^FD{text}\\&^FS");
+      }
+      else
+      {
+        return string.IsNullOrEmpty(text)
+          ? new byte[0]
+          : Encoding.GetEncoding(codepage)
+              .GetBytes($"^FO{left},{top}^A{font.Letter}{(char)rotation},{heightInDots}^FB{width},{maxLines},{lineSpacing},{alignmentValue},{indentSize}^FD{text}\\&^FS");
+      }
     }
 
     public byte[] ClearPrinter()

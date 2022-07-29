@@ -60,7 +60,7 @@ namespace A4ZPrinting
       byte[] asciiBytes = command.GeneratePrintCommands();
       Console.WriteLine(Encoding.UTF8.GetString(asciiBytes));
       // Uncomment the line below to send for actual printing
-      // PrintLabel(printer, asciiBytes);
+      //PrintLabel(printer, asciiBytes);
     }
     private void btnLeftJustified_Click(object sender, EventArgs e)
     {
@@ -102,11 +102,28 @@ namespace A4ZPrinting
       byte[] asciiBytes = command.GeneratePrintCommands();
       Console.WriteLine(Encoding.UTF8.GetString(asciiBytes));
       // Uncomment the line below to send for actual printing
-      // PrintLabel(printer, asciiBytes);
+      //PrintLabel(printer, asciiBytes);
     }
     private void PrintLabel(IZebraPrinter usbPrinter, byte[] asciiBytes)
     {
       usbPrinter.Print(asciiBytes);
+    }
+
+    private void btnZD420Standard_Click(object sender, EventArgs e)
+    {
+      var printerModel = ZD420t.GetInstance();
+      var field = new TextField(1, 1, "Hello, this is A4ZPrinting!!");
+      var defaultFont = new ZplFont0(printerModel.DotPerInch, "6");
+      var template = new StandardHolder(defaultFont);
+      template.Add(field);
+      template.Draw();
+      var label = new TwentyFiveByThirteenMillimeterPerforated(template);
+      printerModel.Label = label;
+      var printer = new SharpZebra.Printing.USBPrinter(printerModel);
+      var command = new PrintCommand(printer);
+      byte[] asciiBytes = command.GeneratePrintCommands();
+      Console.WriteLine(Encoding.UTF8.GetString(asciiBytes));
+
     }
   }
 
