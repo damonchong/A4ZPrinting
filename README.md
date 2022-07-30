@@ -1,5 +1,5 @@
 # A4ZPrinting
-Approximating for Zebra printing (i.e. A4ZPrinting) is a Zebra library to design, generate ZPL commands and print labels for programmers.
+Approximating for Zebra printing (i.e. A4ZPrinting) is a C# library to design, generate ZPL commands and print labels for programmers.
 
 ## What is it?
 A4ZPrinting is a object oriented (OO) library that uses and extends SharpZebra (https://github.com/rkone/sharpzebra) to generate ZPL commands for Zebra printers.
