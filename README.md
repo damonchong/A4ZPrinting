@@ -1,5 +1,5 @@
 # A4ZPrinting
-Approximating for Zebra printing
+Approximating for Zebra printing is a Zebra library to design, generate ZPL code and print labels for programmers.
 
 ## What is it?
 A4ZPrinting is a object oriented (OO) library that uses and extends SharpZebra (https://github.com/rkone/sharpzebra) to generate ZPL commands for Zebra printers.
