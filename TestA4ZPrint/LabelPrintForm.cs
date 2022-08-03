@@ -123,7 +123,8 @@ namespace A4ZPrinting
       var command = new PrintCommand(printer);
       byte[] asciiBytes = command.GeneratePrintCommands();
       Console.WriteLine(Encoding.UTF8.GetString(asciiBytes));
-
+      // Uncomment the line below to send for actual printing
+      //PrintLabel(printer, asciiBytes);
     }
   }
 
