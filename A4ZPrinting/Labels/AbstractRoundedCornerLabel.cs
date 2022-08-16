@@ -22,7 +22,7 @@ namespace A4ZPrinting.Labels
     {
       float tmplLeftPlusWidth = Template.LeftInMillimeters + Template.WidthInMillimeters;
       float tmplTopPlusHeight = Template.TopInMillimeters + Template.HeightInMillimeters;
-      // Due to the 4 curved corners, a gap of 2mm top, bottom, left and right will be intentionally left blank.
+      // Due to the 4 curved corners, a gap of ?mm top, bottom, left and right will be intentionally left blank.
       if (CornerRadiusInMillimeters <= Template.LeftInMillimeters &&
         CornerRadiusInMillimeters <= Template.TopInMillimeters &&
         tmplLeftPlusWidth <= (WidthInMillimeters - (CornerRadiusInMillimeters * 2)) &&

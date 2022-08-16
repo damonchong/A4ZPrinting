@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace A4ZPrinting.Settings
 {
-  public enum Dimensions
+  public enum Location
   {
-    LEFT, RIGHT, TOP, BOTTOM, CENTER
+    LEFT, RIGHT, TOP, BOTTOM, CENTER, UPPER_LEFT_CORNER, UPPER_RIGHT_CORNER, BOTTOM_LEFT_CORNER, BOTTOM_RIGHT_CORNER
   };
   public static class GlobalConstants
   {

@@ -118,13 +118,46 @@ namespace A4ZPrinting.Templates
     // The above measurements uses 4x4 dots per matrix cells. Changing this will affect the calculation.
     private readonly int dotsPerMatrixCell = 4; 
 
-    public DataMatrixField(float left, float top, string data, float dpi, Encodings type = Encodings.ASCII) : base(left, top, data)
+    public DataMatrixField(float left, float top, string data, float dpi, Encodings type = Encodings.ASCII) : this(Location.UPPER_LEFT_CORNER,
+      left, top, data, dpi, type)
+    {      
+    }
+
+    public DataMatrixField(Location startPointOfXY, float x, float y, string data, float dpi, Encodings type = Encodings.ASCII) : base(x, y, data)
     {
       _dpi = dpi;
       approxDPI = ApproximateDPI(dpi);
       // Note: the encoding should match the data. If the data contains ASCII characters but a numeric encoding was chosen, 
       // the result will be unexpected.
       encodeType = type;
+
+      switch (startPointOfXY)
+      {
+        case Location.UPPER_LEFT_CORNER:          
+          break;
+        case Location.BOTTOM_RIGHT_CORNER:
+          // Need to compute the left and top position
+          AssignUpperLeftPosition(startPointOfXY);
+          break;
+        default:
+          throw new NotSupportedException("This location is currently unsupported!");
+      }
+    }
+
+    private void AssignUpperLeftPosition(Location startPointOfXY)
+    {
+      Draw();
+      _leftInMillimeters = _leftInMillimeters - _widthInMillimeters;
+      _topInMillimeters = _topInMillimeters - _heightInMillimeters;
+     if( _leftInMillimeters<0)
+      {
+        throw new ApplicationException("The data is too wide and causes the left margin to be negative!");
+      }
+
+      if (_topInMillimeters < 0)
+      {
+        throw new ApplicationException("The data height exceeded the top margin and cause the top position to be negative!");
+      }
     }
 
     public int DotsPerMatrixCell { get => dotsPerMatrixCell; }

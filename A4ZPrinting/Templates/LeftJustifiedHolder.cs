@@ -14,7 +14,7 @@ namespace A4ZPrinting.Templates
     /* This is the 2nd alignment if a component straddles 2 or more components to its left i.e. it will shift upwards to align
      * with the topmost component on its left.
      */
-    private const Dimensions _2ndAlignPriority = Dimensions.TOP;
+    private const Location _2ndAlignPriority = Location.TOP;
     private List<ITemplate> workComponents = new List<ITemplate>();
     
     public LeftJustifiedHolder(AbstractFont df)
@@ -44,7 +44,7 @@ namespace A4ZPrinting.Templates
 */
     private void AlignTemplateComponents()
     {
-      var comparer = new SideComparer(Dimensions.LEFT, _2ndAlignPriority);
+      var comparer = new SideComparer(Location.LEFT, _2ndAlignPriority);
       SortedList<ITemplate, float[]> rawList = new SortedList<ITemplate, float[]>(comparer);
       foreach (ITemplate component in workComponents)
       {
