@@ -10,11 +10,11 @@ namespace A4ZPrinting.Utils
 {
   public class SideComparer : Comparer<ITemplate>
   {
-    private List<Dimensions> compareSides = new List<Dimensions>();
+    private List<Location> compareSides = new List<Location>();
 
-    public SideComparer(params Dimensions[] sides)
+    public SideComparer(params Location[] sides)
     {
-      foreach (Dimensions d in sides)
+      foreach (Location d in sides)
       {
         compareSides.Add(d);
       }
@@ -22,7 +22,7 @@ namespace A4ZPrinting.Utils
 
     public override int Compare(ITemplate x, ITemplate y)
     {
-      foreach(Dimensions side in compareSides)
+      foreach(Location side in compareSides)
       {
         int result = 0;
         if (0 != (result = CompareSides(x, y, side)))
@@ -34,17 +34,17 @@ namespace A4ZPrinting.Utils
       return 0;
     }
 
-    private int CompareSides(ITemplate x, ITemplate y, Dimensions side)
+    private int CompareSides(ITemplate x, ITemplate y, Location side)
     {
       switch (side)
       {
-        case Dimensions.LEFT:
+        case Location.LEFT:
           return OneSideComparison(x.LeftInMillimeters, y.LeftInMillimeters);
-        case Dimensions.RIGHT:
+        case Location.RIGHT:
           return OneSideComparison(x.LeftInMillimeters + x.WidthInMillimeters, y.LeftInMillimeters + y.WidthInMillimeters);
-        case Dimensions.TOP:
+        case Location.TOP:
           return OneSideComparison(x.TopInMillimeters, y.TopInMillimeters);
-        case Dimensions.BOTTOM:
+        case Location.BOTTOM:
           return OneSideComparison(x.TopInMillimeters + x.HeightInMillimeters, y.TopInMillimeters + y.HeightInMillimeters);
         default:
           throw new NotImplementedException("This comparison is not yet implemented!");

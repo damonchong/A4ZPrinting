@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace A4ZPrinting.Labels
 {
-  public class TwentyFiveByThirteenMillimeterPerforated : AbstractLabel
+  public class TwentyFiveByThirteenMillimeterRoundedCornerPerforated : AbstractRoundedCornerLabel
   {
     public override float WidthInMillimeters { get => 25f; set => throw new NotSupportedException(); }
-    public override float HeightInMillimeters { get => 13f; set => throw new NotSupportedException(); }    
+    public override float HeightInMillimeters { get => 13f; set => throw new NotSupportedException(); }
+    public override float CornerRadiusInMillimeters { get => 1f; set => throw new NotSupportedException(); }
     public override bool Perforated { get => true; set => throw new NotSupportedException(); }
     public override ITemplate Template { get; set; }
 
-    public TwentyFiveByThirteenMillimeterPerforated(ITemplate t)
+    public TwentyFiveByThirteenMillimeterRoundedCornerPerforated(ITemplate t)
     {
       Template = t;
       if (!VerifyTemplate())
