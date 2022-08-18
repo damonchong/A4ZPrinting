@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{86CF307A-3DEE-4BC5-A6CE-1670FA19B7D8}</ProjectGuid>
+    <ProjectGuid>{6B93F099-4383-4474-9879-418369E69576}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>TestA4ZPrint</RootNamespace>
     <AssemblyName>TestA4ZPrint</AssemblyName>
@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,9 +53,7 @@
     <Compile Include="LabelPrintForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LabelPrintForm.designer.cs">
-      <DependentUpon>LabelPrintForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="LabelPrintForm.Designer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="LabelPrintForm.resx">
@@ -68,6 +67,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -83,8 +83,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\A4ZPrinting\A4ZPrinting\A4ZPrinting.csproj">
-      <Project>{54DC524D-A061-4168-98D6-6232DE48200C}</Project>
+    <ProjectReference Include="..\A4ZPrinting\A4ZPrinting.csproj">
+      <Project>{778fe670-24f6-4c38-b7d3-743004e05360}</Project>
       <Name>A4ZPrinting</Name>
     </ProjectReference>
   </ItemGroup>

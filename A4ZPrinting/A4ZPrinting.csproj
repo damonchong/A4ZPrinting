@@ -66,10 +66,12 @@
     <Compile Include="Fonts\ZplFontD.cs" />
     <Compile Include="Fonts\ZplFontF.cs" />
     <Compile Include="Fonts\ZplFontG.cs" />
+    <Compile Include="Labels\AbstractLabel.cs" />
     <Compile Include="Labels\AbstractRoundedCornerLabel.cs" />
     <Compile Include="Labels\ILabel.cs" />
-    <Compile Include="Labels\OneByPointSevenFiveInchNotPerforated.cs" />
+    <Compile Include="Labels\OneByPointSevenFiveInchRoundedCornerNotPerforated.cs" />
     <Compile Include="Labels\TwentyFiveByThirteenMillimeterPerforated.cs" />
+    <Compile Include="Labels\TwentyFiveByThirteenMillimeterRoundedCornerPerforated.cs" />
     <Compile Include="PrinterModels\AbstractPrinterModel.cs" />
     <Compile Include="PrinterModels\GX430t.cs" />
     <Compile Include="PrinterModels\ZD420t.cs" />
