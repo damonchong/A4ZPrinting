@@ -51,7 +51,7 @@ namespace A4ZPrinting
       // for standard template, the below doesn't do anything
       template.Draw();
       // Create a label
-      var label = new OneByPointSevenFiveInchNotPerforated(template);
+      var label = new OneByPointSevenFiveInchRoundedCornerNotPerforated(template);
       printerModel.Label = label;
       // Set as a USB printer.
       var printer = new SharpZebra.Printing.USBPrinter(printerModel);
@@ -93,7 +93,7 @@ namespace A4ZPrinting
       // For left justified template, this aligns as well as check for layout errors.
       template.Draw();
       // Create a label
-      var label = new OneByPointSevenFiveInchNotPerforated(template);
+      var label = new OneByPointSevenFiveInchRoundedCornerNotPerforated(template);
       printerModel.Label = label;
       // Set as a USB printer.
       var printer = new SharpZebra.Printing.USBPrinter(printerModel);
